@@ -67,6 +67,10 @@ public class Server {
     }
 
     private Handler findHandler(String method, String path) {
+        int index = path.indexOf('?');
+        if (index != -1) {
+            path = path.substring(0, index);
+        }
         Map<String, Handler> methodHandlers = handlers.get(method);
         if (methodHandlers != null) {
             return methodHandlers.get(path);
